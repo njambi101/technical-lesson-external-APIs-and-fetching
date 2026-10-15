@@ -1,5 +1,26 @@
 // Define the function to display astronauts
+function displaAstronaunts(data){
+    const lists = document.getElementById('astronaut-list')
+        data.people.forEach(person => {
+            const list = document.createElement('li')
+            list.textContent = person.name;
+            lists.appendChild(list)
+    });
+}
 
+fetch("http://api.open-notify.org/astros.json")
+    .then((response) => {
+        const res = response.json()
+        return res
+    })
+    .then((data) => {
+        displaAstronaunts(data)
+    })
+    .catch ((error) => {
+        console.log("Error fetching data:", error)
+    })
+
+    
 // Function to display astronauts data
 // Hint: Create a function called displayAstronauts(data)
 // Hint: Select the <ul> element with the id "astronaut-list"
